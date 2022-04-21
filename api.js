@@ -1,3 +1,13 @@
+// use keyboard enter for search :
+const searchField = document.getElementById('button');
+const searchInput = document.getElementById('search-input');
+searchInput.addEventListener("keypress", function (event) {
+    console.log('keypress trigerred', event.key)
+    if (event.key === 'Enter'){
+        searchField.click();
+    }      
+});
+
 const loadSingleUser = () => {
     fetch('https://randomuser.me/api/')
     .then(res => res.json())
@@ -7,6 +17,13 @@ loadSingleUser();
 
 const displaySingleUser = user => {
     console.log(user)
+}
+
+// meal dB 
+const searchMeal = () => {
+    const searchText = document.getElementById('search-input').value;
+    loadMeals(searchText);
+    document.getElementById('search-input').value = ''
 }
 
 const loadMeals = searchText => {
@@ -19,6 +36,7 @@ loadMeals('fish')
 
 const displayMeals = meals => {
     const container = document.getElementById('meals');
+    container.textContent = ''
     meals.forEach(meal => {
         console.log(meal)
     const div = document.createElement('div');
